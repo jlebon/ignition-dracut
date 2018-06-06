@@ -1,10 +1,10 @@
 [Unit]
 Description=Ignition (files)
 DefaultDependencies=false
-Before=initrd-parse-etc.service
+#Before=initrd-parse-etc.service
 
-Requires=initrd-root-fs.target
-After=initrd-root-fs.target
+#Requires=initrd-root-fs.target
+#After=initrd-root-fs.target
 
 #Requires=ignition-setup.service ignition-disks.service
 #After=ignition-setup.service ignition-disks.service
@@ -12,15 +12,21 @@ After=initrd-root-fs.target
 Requires=ignition-disks.service
 After=ignition-disks.service
 
-Requires=remount-sysroot.service
-After=remount-sysroot.service
+Requires=ignition-remount-sysroot.service
+After=ignition-remount-sysroot.service
+
+After=ostree-prepare-root.service
+After=initrd-switch-root.target
+Before=initrd-switch-root.service
+
+#Before=initrd-switch-root.service
 
 # setup the root filesystem before we try do things like create users on it.
 #Requires=initrd-setup-root.service
 #After=initrd-setup-root.service
 
 # setup networking
-After=network.target
+#After=network.target
 
 # generate resolv.conf
 #Wants=systemd-resolved.service
