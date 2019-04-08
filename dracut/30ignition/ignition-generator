@@ -39,4 +39,4 @@ if $(cmdline_bool 'ignition.firstboot' 0); then
     add_requires ignition-complete.target
 fi
 
-echo "PLATFORM_ID=$(cmdline_arg ignition.platform.id)" > /run/ignition.env
+echo "PLATFORM_ID=$(cmdline_arg ignition.platform.id metal)" > /run/ignition.env
