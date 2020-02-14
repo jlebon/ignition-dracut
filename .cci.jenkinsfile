@@ -1,0 +1,4 @@
+cosaPod {
+    checkout scm
+    fcosBuild(make: true)
+}
